@@ -41,5 +41,11 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	// read the secret
+	_, err = secretsClient.Get(context.TODO(), metav1.GetOptions{})
+	if err != nil {
+		panic(err)
+	}
 }
 
