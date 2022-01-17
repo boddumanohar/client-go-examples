@@ -14,7 +14,7 @@ import (
 var secretsClient coreV1Types.SecretInterface
 
 func initClient() {
-	kubeconfig := os.Getenv("HOME") + "/.kube/config"
+	kubeconfig := os.Getenv("HOME") + "/.kube/bx.yaml"
 	config, err := clientcmd.BuildConfigFromFlags("", kubeconfig)
 	if err != nil {
 		panic(err.Error())
@@ -43,7 +43,7 @@ func main() {
 	}
 
 	// read the secret
-	_, err = secretsClient.Get(context.TODO(), metav1.GetOptions{})
+	_, err = secretsClient.Get(context.TODO(), "my-secret", metav1.GetOptions{})
 	if err != nil {
 		panic(err)
 	}
